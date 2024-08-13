@@ -1,5 +1,7 @@
 package com.gustavomacedo.flaquiz;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -14,6 +16,7 @@ public class Brasil extends AppCompatActivity {
 
     private TextView txtResposta;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,8 +28,13 @@ public class Brasil extends AppCompatActivity {
             return insets;
         });
 
+        Intent recebida = getIntent();
+        Bundle parametrosRecebidos = recebida.getExtras();
+
         txtResposta = findViewById(R.id.resposta);
         RadioGroup rgRespostas = findViewById(R.id.rgRespostas);
+
+        txtResposta.setText(parametrosRecebidos.getString("nome") + ", selecione uma opção!");
 
         rgRespostas.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == -1) {

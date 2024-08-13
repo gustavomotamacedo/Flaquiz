@@ -28,8 +28,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="center"
-            android:inputType="text"
-            android:text="Name" />
+            android:hint="Digite seu nome"
+            android:inputType="text" />
 
         <Button
             android:id="@+id/btnIniciar"
