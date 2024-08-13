@@ -15,6 +15,8 @@ import androidx.core.view.WindowInsetsCompat;
 public class Brasil extends AppCompatActivity {
 
     private TextView txtResposta;
+    private int corretas;
+    private int incorretas;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -34,7 +36,11 @@ public class Brasil extends AppCompatActivity {
         txtResposta = findViewById(R.id.resposta);
         RadioGroup rgRespostas = findViewById(R.id.rgRespostas);
 
-        txtResposta.setText(parametrosRecebidos.getString("nome") + ", selecione uma opção!");
+        if (parametrosRecebidos != null) {
+            txtResposta.setText(parametrosRecebidos.getString("nome") + ", selecione uma opção!");
+            corretas = parametrosRecebidos.getInt("corretas");
+            corretas = parametrosRecebidos.getInt("incorretas");
+        }
 
         rgRespostas.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == -1) {
@@ -42,6 +48,7 @@ public class Brasil extends AppCompatActivity {
             } else {
                 if (checkedId == R.id.radBrasil) {
                     txtResposta.setText(R.string.correta);
+
                 } else {
                     txtResposta.setText(R.string.incorreta);
                 }

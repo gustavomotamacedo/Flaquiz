@@ -15,6 +15,8 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
 
     private EditText nome;
+    private int corretas;
+    private int incorretas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         nome = findViewById(R.id.edtNome);
+        corretas = 0;
+        incorretas = 0;
     }
 
     public void iniciar(View v) {
@@ -40,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
             Bundle parametros = new Bundle();
 
             parametros.putString("nome", nome.getText().toString());
+            parametros.putInt("corretas", corretas);
+            parametros.putInt("incorretas", incorretas);
 
             in.putExtras(parametros);
 
