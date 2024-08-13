@@ -40,7 +40,9 @@ public class MainActivity extends AppCompatActivity {
             in.putExtras(parametros);
 
             startActivity(in);
-        } else {
+        } else if (nome.getText().length() > 1) {
+            Toast.makeText(getApplicationContext(), "Por favor, digite um nome de usuário com pelo menos 3 letras", Toast.LENGTH_LONG).show();
+        }else {
             Toast.makeText(getApplicationContext(), "Por favor, digite um nome de usuário", Toast.LENGTH_SHORT).show();
         }
     }
