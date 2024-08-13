@@ -12,11 +12,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.gustavomacedo.flaquiz.models.Usuario;
+
 public class Brasil extends AppCompatActivity {
 
     private TextView txtResposta;
-    private int corretas;
-    private int incorretas;
+    private Usuario usuario;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -37,10 +38,10 @@ public class Brasil extends AppCompatActivity {
         RadioGroup rgRespostas = findViewById(R.id.rgRespostas);
 
         if (parametrosRecebidos != null) {
-            String nome = parametrosRecebidos.getString("nome");
-            corretas = parametrosRecebidos.getInt("corretas");
-            incorretas = parametrosRecebidos.getInt("incorretas");
-            txtResposta.setText(nome + ", selecione uma opção!\n" + corretas + "\t" + incorretas);
+            usuario.setNome(parametrosRecebidos.getString("nome"));
+            usuario.setQtdCorretas(parametrosRecebidos.getInt("corretas"));
+            usuario.setQtdIncorretas(parametrosRecebidos.getInt("incorretas"));
+            txtResposta.setText(usuario.getNome() + ", selecione uma opção!\n" + usuario.getQtdCorretas() + "\t" + usuario.getQtdIncorretas());
         }
 
         rgRespostas.setOnCheckedChangeListener((group, checkedId) -> {
@@ -50,12 +51,12 @@ public class Brasil extends AppCompatActivity {
                 if (checkedId == R.id.radBrasil) {
                     txtResposta.setText(R.string.correta);
                     if (parametrosRecebidos != null)
-                        parametrosRecebidos.putInt("corretas", ++corretas);
+                        parametrosRecebidos.putInt("corretas", usuario.incrementaCorreta());
                     proximaPagina(parametrosRecebidos);
                 } else {
                     txtResposta.setText(R.string.incorreta);
                     if (parametrosRecebidos != null)
-                        parametrosRecebidos.putInt("incorretas", ++incorretas);
+                        parametrosRecebidos.putInt("incorretas", usuario.incrementaIncorreta());
                     proximaPagina(parametrosRecebidos);
                 }
             }

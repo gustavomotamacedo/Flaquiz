@@ -13,6 +13,16 @@ public class Usuario {
         this.qtdIncorretas = qtdIncorretas;
     }
 
+    public int incrementaCorreta() {
+        this.qtdCorretas++;
+        return qtdCorretas;
+    }
+
+    public int incrementaIncorreta() {
+        this.qtdIncorretas++;
+        return qtdIncorretas;
+    }
+
     public String getNome() {
         return nome;
     }
