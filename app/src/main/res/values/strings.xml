@@ -2,6 +2,10 @@
     <string name="app_name">Flaquiz</string>
     <string name="iniciar">Iniciar</string>
     <string name="bandeira_do_brasil">Bandeira do Brasil</string>
+    <string name="bandeira_da_india">Bandeira da India</string>
+    <string name="bandeira_da_russia">Bandeira da Russia</string>
+    <string name="bandeira_da_china">Bandeira da China</string>
+    <string name="bandeira_da_africa_do_sul">Bandeira da Africa do Sul</string>
     <string name="brazil">Brasil</string>
     <string name="russia">Russia</string>
     <string name="india">India</string>

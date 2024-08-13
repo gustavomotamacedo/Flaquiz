@@ -16,8 +16,8 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/bandeira_do_brasil"
-            android:src="@drawable/bandeira_do_brasil" />
+            android:contentDescription="@string/bandeira_da_india"
+            android:src="@drawable/bandeira_da_india" />
 
         <RadioGroup
             android:id="@+id/rgRespostas"
@@ -62,7 +62,7 @@
         </RadioGroup>
 
         <TextView
-            android:id="@+id/resposta"
+            android:id="@+id/edtResposta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="bottom|center"

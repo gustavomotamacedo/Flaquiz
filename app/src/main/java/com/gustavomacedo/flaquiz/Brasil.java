@@ -18,6 +18,7 @@ public class Brasil extends AppCompatActivity {
 
     private TextView txtResposta;
     private Usuario usuario;
+    RadioGroup rgRespostas;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -31,40 +32,54 @@ public class Brasil extends AppCompatActivity {
             return insets;
         });
 
-        Intent recebida = getIntent();
-        Bundle parametrosRecebidos = recebida.getExtras();
+        Intent in = getIntent();
+        Bundle bd = in.getExtras();
 
-        txtResposta = findViewById(R.id.resposta);
-        RadioGroup rgRespostas = findViewById(R.id.rgRespostas);
+        txtResposta = findViewById(R.id.edtResposta);
+        rgRespostas = findViewById(R.id.rgRespostas);
+        usuario = new Usuario();
 
-        if (parametrosRecebidos != null) {
-            usuario.setNome(parametrosRecebidos.getString("nome"));
-            usuario.setQtdCorretas(parametrosRecebidos.getInt("corretas"));
-            usuario.setQtdIncorretas(parametrosRecebidos.getInt("incorretas"));
-            txtResposta.setText(usuario.getNome() + ", selecione uma opção!\n" + usuario.getQtdCorretas() + "\t" + usuario.getQtdIncorretas());
+        if (bd != null) {
+            usuario.setNome(bd.getString("nome"));
+            usuario.setQtdCorretas(bd.getInt("corretas"));
+            usuario.setQtdIncorretas(bd.getInt("incorretas"));
+            txtResposta.setText(usuario.getNome() + ", selecione uma opção!\n" + usuario.getQtdCorretas() + "\t\t\t" + usuario.getQtdIncorretas());
         }
 
         rgRespostas.setOnCheckedChangeListener((group, checkedId) -> {
-            if (checkedId == -1) {
-                txtResposta.setText(R.string.semOpcaoSelecionada);
-            } else {
-                if (checkedId == R.id.radBrasil) {
+            if (checkedId == R.id.radBrasil) {
                     txtResposta.setText(R.string.correta);
-                    if (parametrosRecebidos != null)
-                        parametrosRecebidos.putInt("corretas", usuario.incrementaCorreta());
-                    proximaPagina(parametrosRecebidos);
-                } else {
+                    if (bd != null)
+                        bd.putInt("corretas", usuario.incrementaCorreta());
+                    proximaPagina(bd);
+            } else if (checkedId == R.id.radRussia) {
                     txtResposta.setText(R.string.incorreta);
-                    if (parametrosRecebidos != null)
-                        parametrosRecebidos.putInt("incorretas", usuario.incrementaIncorreta());
-                    proximaPagina(parametrosRecebidos);
-                }
+                    if (bd != null)
+                        bd.putInt("incorretas", usuario.incrementaIncorreta());
+                    proximaPagina(bd);
+                }else if (checkedId == R.id.radIndia) {
+                txtResposta.setText(R.string.incorreta);
+                if (bd != null)
+                    bd.putInt("incorretas", usuario.incrementaIncorreta());
+                proximaPagina(bd);
+            }else if (checkedId == R.id.radChina) {
+                txtResposta.setText(R.string.incorreta);
+                if (bd != null)
+                    bd.putInt("incorretas", usuario.incrementaIncorreta());
+                proximaPagina(bd);
+            }else if (checkedId == R.id.radSouthAfrica) {
+                txtResposta.setText(R.string.incorreta);
+                if (bd != null)
+                    bd.putInt("incorretas", usuario.incrementaIncorreta());
+                proximaPagina(bd);
+            } else {
+                txtResposta.setText(R.string.semOpcaoSelecionada);
             }
         });
     }
 
     public void proximaPagina(Bundle parametros) {
-        Intent in = new Intent(getApplicationContext(), Brasil.class);
+        Intent in = new Intent(getApplicationContext(), India.class);
 
         if (parametros != null) {
             in.putExtras(parametros);
