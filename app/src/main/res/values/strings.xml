@@ -14,4 +14,7 @@
     <string name="correta">CORRETA</string>
     <string name="incorreta">INCORRETA</string>
     <string name="semOpcaoSelecionada">Selecione uma opção</string>
+    <string name="parabens">PARABÉNS</string>
+    <string name="tente_novamente">Que pena… \nTente de novo!</string>
+    <string name="reiniciar">Menu inicial</string>
 </resources>
