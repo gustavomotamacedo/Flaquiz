@@ -37,9 +37,10 @@ public class Brasil extends AppCompatActivity {
         RadioGroup rgRespostas = findViewById(R.id.rgRespostas);
 
         if (parametrosRecebidos != null) {
-            txtResposta.setText(parametrosRecebidos.getString("nome") + ", selecione uma opção!");
+            String nome = parametrosRecebidos.getString("nome");
             corretas = parametrosRecebidos.getInt("corretas");
-            corretas = parametrosRecebidos.getInt("incorretas");
+            incorretas = parametrosRecebidos.getInt("incorretas");
+            txtResposta.setText(nome + ", selecione uma opção!\n" + corretas + "\t" + incorretas);
         }
 
         rgRespostas.setOnCheckedChangeListener((group, checkedId) -> {
@@ -48,11 +49,26 @@ public class Brasil extends AppCompatActivity {
             } else {
                 if (checkedId == R.id.radBrasil) {
                     txtResposta.setText(R.string.correta);
-
+                    if (parametrosRecebidos != null)
+                        parametrosRecebidos.putInt("corretas", ++corretas);
+                    proximaPagina(parametrosRecebidos);
                 } else {
                     txtResposta.setText(R.string.incorreta);
+                    if (parametrosRecebidos != null)
+                        parametrosRecebidos.putInt("incorretas", ++incorretas);
+                    proximaPagina(parametrosRecebidos);
                 }
             }
         });
+    }
+
+    public void proximaPagina(Bundle parametros) {
+        Intent in = new Intent(getApplicationContext(), Brasil.class);
+
+        if (parametros != null) {
+            in.putExtras(parametros);
+        }
+
+        startActivity(in);
     }
 }
