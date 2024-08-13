@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Flaquiz</string>
     <string name="iniciar">Iniciar</string>
+    <string name="bandeira_do_brasil">Bandeira do Brasil</string>
 </resources>
