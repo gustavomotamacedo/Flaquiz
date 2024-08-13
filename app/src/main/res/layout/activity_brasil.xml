@@ -18,5 +18,22 @@
             android:layout_height="wrap_content"
             android:contentDescription="@string/bandeira_do_brasil"
             android:src="@drawable/bandeira_do_brasil" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <RadioButton
+                android:id="@+id/radBrasil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/brazil" />
+
+            <RadioButton
+                android:id="@+id/radRussia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/russia" />
+        </RadioGroup>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
