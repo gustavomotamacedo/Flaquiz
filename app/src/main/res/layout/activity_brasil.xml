@@ -22,22 +22,21 @@
         <RadioGroup
             android:id="@+id/rgRespostas"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checkedButton="@id/radBrasil">
+            android:layout_height="wrap_content">
 
             <RadioButton
                 android:id="@+id/radBrasil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/brazil"
-                android:checked="true"/>
+                android:checked="true"
+                android:text="@string/brazil" />
 
             <RadioButton
                 android:id="@+id/radRussia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/russia"
-                android:checked="false"/>
+                android:checked="false"
+                android:text="@string/russia" />
 
         </RadioGroup>
 
@@ -46,7 +45,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Selecione uma opção"
             android:textSize="20sp" />
 
     </LinearLayout>

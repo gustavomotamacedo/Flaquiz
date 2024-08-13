@@ -7,4 +7,7 @@
     <string name="india">India</string>
     <string name="china">China</string>
     <string name="south_africa">Africa do sul</string>
+    <string name="correta">CORRETA</string>
+    <string name="incorreta">INCORRETA</string>
+    <string name="semOpcaoSelecionada">Selecione uma opção</string>
 </resources>

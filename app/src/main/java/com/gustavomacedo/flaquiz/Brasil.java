@@ -29,10 +29,14 @@ public class Brasil extends AppCompatActivity {
         RadioGroup rgRespostas = findViewById(R.id.rgRespostas);
 
         rgRespostas.setOnCheckedChangeListener((group, checkedId) -> {
-            if (checkedId == R.id.radBrasil) {
-                txtResposta.setText("CORRETA");
+            if (checkedId == -1) {
+                txtResposta.setText(R.string.semOpcaoSelecionada);
             } else {
-                txtResposta.setText("INCORRETA");
+                if (checkedId == R.id.radBrasil) {
+                    txtResposta.setText(R.string.correta);
+                } else {
+                    txtResposta.setText(R.string.incorreta);
+                }
             }
         });
     }

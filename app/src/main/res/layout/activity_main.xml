@@ -22,6 +22,15 @@
             android:text="@string/app_name"
             android:textSize="96sp" />
 
+        <EditText
+            android:id="@+id/edtNome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="text"
+            android:text="Name" />
+
         <Button
             android:id="@+id/btnIniciar"
             android:layout_width="wrap_content"
