@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Flaquiz</string>
+    <string name="iniciar">Iniciar</string>
 </resources>
