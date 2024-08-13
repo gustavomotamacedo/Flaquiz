@@ -38,13 +38,34 @@
                 android:checked="false"
                 android:text="@string/russia" />
 
+            <RadioButton
+                android:id="@+id/radIndia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="@string/india" />
+
+            <RadioButton
+                android:id="@+id/radChina"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="@string/china" />
+
+            <RadioButton
+                android:id="@+id/radSouthAfrica"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="@string/south_africa" />
+
         </RadioGroup>
 
         <TextView
             android:id="@+id/resposta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="bottom|center"
             android:textSize="20sp" />
 
     </LinearLayout>
