@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         if (nome.getText().length() == 0) {
             Toast.makeText(getApplicationContext(), "Por favor, digite um nome de usuário", Toast.LENGTH_SHORT).show();
         } else if (nome.getText().length() < 3) {
-            Toast.makeText(getApplicationContext(), "Por favor, digite um nome de usuário com pelo menos 3 letras", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Digite um nome de usuário com pelo menos 3 letras", Toast.LENGTH_LONG).show();
         }else {
             Intent in = new Intent(getApplicationContext(), Brasil.class);
             Bundle parametros = new Bundle();
