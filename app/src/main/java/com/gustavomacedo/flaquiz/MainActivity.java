@@ -31,7 +31,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void iniciar(View v) {
-        if (nome.getText().length() > 3) {
+        if (nome.getText().length() == 0) {
+            Toast.makeText(getApplicationContext(), "Por favor, digite um nome de usuário", Toast.LENGTH_SHORT).show();
+        } else if (nome.getText().length() < 3) {
+            Toast.makeText(getApplicationContext(), "Por favor, digite um nome de usuário com pelo menos 3 letras", Toast.LENGTH_LONG).show();
+        }else {
             Intent in = new Intent(getApplicationContext(), Brasil.class);
             Bundle parametros = new Bundle();
 
@@ -40,10 +44,6 @@ public class MainActivity extends AppCompatActivity {
             in.putExtras(parametros);
 
             startActivity(in);
-        } else if (nome.getText().length() > 1) {
-            Toast.makeText(getApplicationContext(), "Por favor, digite um nome de usuário com pelo menos 3 letras", Toast.LENGTH_LONG).show();
-        }else {
-            Toast.makeText(getApplicationContext(), "Por favor, digite um nome de usuário", Toast.LENGTH_SHORT).show();
         }
     }
 }
