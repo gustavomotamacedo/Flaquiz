@@ -24,6 +24,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void iniciar(View v) {
-        //TODO: set view to next
+        setContentView(R.layout.activity_brasil);
     }
 }
