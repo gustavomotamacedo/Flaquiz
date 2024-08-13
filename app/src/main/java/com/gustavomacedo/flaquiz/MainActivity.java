@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,13 +31,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void iniciar(View v) {
-        Intent in = new Intent(getApplicationContext(), Brasil.class);
-        Bundle parametros = new Bundle();
+        if (nome.getText().length() > 3) {
+            Intent in = new Intent(getApplicationContext(), Brasil.class);
+            Bundle parametros = new Bundle();
 
-        parametros.putString("nome", nome.getText().toString());
+            parametros.putString("nome", nome.getText().toString());
 
-        in.putExtras(parametros);
+            in.putExtras(parametros);
 
-        startActivity(in);
+            startActivity(in);
+        } else {
+            Toast.makeText(getApplicationContext(), "Por favor, digite um nome de usuário", Toast.LENGTH_SHORT).show();
+        }
     }
 }
