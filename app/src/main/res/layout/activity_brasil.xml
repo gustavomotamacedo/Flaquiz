@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".Brasil">
 
     <LinearLayout
@@ -20,20 +20,34 @@
             android:src="@drawable/bandeira_do_brasil" />
 
         <RadioGroup
+            android:id="@+id/rgRespostas"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="wrap_content"
+            android:checkedButton="@id/radBrasil">
 
             <RadioButton
                 android:id="@+id/radBrasil"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/brazil" />
+                android:text="@string/brazil"
+                android:checked="true"/>
 
             <RadioButton
                 android:id="@+id/radRussia"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/russia" />
+                android:text="@string/russia"
+                android:checked="false"/>
+
         </RadioGroup>
+
+        <TextView
+            android:id="@+id/resposta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Selecione uma opção"
+            android:textSize="20sp" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

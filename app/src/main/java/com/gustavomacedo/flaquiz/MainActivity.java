@@ -1,5 +1,6 @@
 package com.gustavomacedo.flaquiz;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void iniciar(View v) {
-        setContentView(R.layout.activity_brasil);
+        Intent in = new Intent(getApplicationContext(), Brasil.class);
+        startActivity(in);
     }
 }
