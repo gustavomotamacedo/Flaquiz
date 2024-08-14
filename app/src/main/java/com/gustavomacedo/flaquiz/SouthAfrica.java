@@ -1,8 +1,10 @@
 package com.gustavomacedo.flaquiz;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -58,6 +60,8 @@ public class SouthAfrica extends AppCompatActivity {
                         edtResposta.setText(R.string.incorreta);
                         if (bd != null)
                             bd.putInt("incorretas", usuario.incrementaIncorreta());
+                        Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                        vibe.vibrate(300);
                         proximaPagina(bd);
                     }
                 }

@@ -2,8 +2,10 @@ package com.gustavomacedo.flaquiz;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,8 +19,11 @@ import com.gustavomacedo.flaquiz.models.Usuario;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView edtNome;
+    private EditText edtNome;
     private Usuario usuario;
+    private TextView txtFlaquiz;
+    private MediaPlayer mp;
+    private int click;
 
     @SuppressLint("ResourceAsColor")
     @Override
@@ -33,9 +38,30 @@ public class MainActivity extends AppCompatActivity {
         });
 
         edtNome = findViewById(R.id.edtNome);
+        txtFlaquiz = findViewById(R.id.textView);
+        click = 0;
         usuario = new Usuario();
         usuario.setQtdCorretas(0);
         usuario.setQtdIncorretas(0);
+
+        txtFlaquiz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                click++;
+                if (click == 3) {
+                    mp = new MediaPlayer().create(getApplicationContext(), R.raw.para_de_mandar_audio_to_na_ucrania);
+                    mp.start();
+                } else if (click == 5) {
+                    mp = new MediaPlayer().create(getApplicationContext(), R.raw.eu_tentei_crop);
+                    mp.start();
+                } else if (click == 4 || click == 6) {
+                    mp.stop();
+                } else if (click > 6) {
+                    click = 0;
+                }
+            }
+        });
+
 
     }
 
