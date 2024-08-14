@@ -19,10 +19,6 @@ import com.gustavomacedo.flaquiz.models.Usuario;
 public class TelaFinal extends AppCompatActivity {
 
     private Usuario usuario;
-    private TextView txtParabens;
-    private TextView txtCorretas;
-    private TextView txtIncorretas;
-    private Button btnRecomecar;
     private MediaPlayer mp;
 
     @SuppressLint("SetTextI18n")
@@ -42,10 +38,10 @@ public class TelaFinal extends AppCompatActivity {
         if (bd != null)
             usuario = new Usuario(bd.getString("nome"), bd.getInt("corretas"), bd.getInt("incorretas"));
 
-        txtParabens = findViewById(R.id.txtParabens);
-        txtCorretas = findViewById(R.id.txtCorretas);
-        txtIncorretas = findViewById(R.id.txtIncorretas);
-        btnRecomecar = findViewById(R.id.btnRecomecar);
+        TextView txtParabens = findViewById(R.id.txtParabens);
+        TextView txtCorretas = findViewById(R.id.txtCorretas);
+        TextView txtIncorretas = findViewById(R.id.txtIncorretas);
+        Button btnRecomecar = findViewById(R.id.btnRecomecar);
 
 
 
@@ -54,19 +50,19 @@ public class TelaFinal extends AppCompatActivity {
         if (usuario.diferencaAcertosErros() > 0) {
                 txtParabens.setText(getString(R.string.parabens) + ", " + usuario.getNome().toUpperCase());
             if (usuario.getQtdIncorretas() == 0) {
-                mp = new MediaPlayer().create(getApplicationContext(), R.raw.sexy_sax);
+                mp = MediaPlayer.create(getApplicationContext(), R.raw.sexy_sax);
                 mp.start();
             } else {
-                mp = new MediaPlayer().create(getApplicationContext(), R.raw.anime_wow_sound_effect);
+                mp = MediaPlayer.create(getApplicationContext(), R.raw.anime_wow_sound_effect);
                 mp.start();
             }
         } else {
             txtParabens.setText(getString(R.string.tente_novamente) + usuario.getNome() + "!");
             if (usuario.getQtdCorretas() == 0) {
-                mp = new MediaPlayer().create(getApplicationContext(), R.raw.emotional_damage);
+                mp = MediaPlayer.create(getApplicationContext(), R.raw.emotional_damage);
                 mp.start();
             } else {
-                mp = new MediaPlayer().create(getApplicationContext(), R.raw.english_or_spanish);
+                mp = MediaPlayer.create(getApplicationContext(), R.raw.english_or_spanish);
                 mp.start();
             }
         }
