@@ -3,6 +3,7 @@ package com.gustavomacedo.flaquiz;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.widget.RadioGroup;
@@ -21,6 +22,7 @@ public class Brasil extends AppCompatActivity {
     private TextView txtResposta;
     private Usuario usuario;
     RadioGroup rgRespostas;
+    private MediaPlayer mp;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -53,6 +55,8 @@ public class Brasil extends AppCompatActivity {
                 txtResposta.setText(R.string.semOpcaoSelecionada);
             } else {
                 if (checkedId == R.id.radBrasil) {
+                    mp = new MediaPlayer().create(getApplicationContext(), R.raw.correta);
+                    mp.start();
                     txtResposta.setText(R.string.correta);
                     if (bd != null)
                         bd.putInt("corretas", usuario.incrementaCorreta());

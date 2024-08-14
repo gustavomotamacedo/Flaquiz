@@ -3,6 +3,7 @@ package com.gustavomacedo.flaquiz;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.widget.RadioGroup;
@@ -20,6 +21,7 @@ public class China extends AppCompatActivity {
 
     Usuario usuario;
     TextView edtResposta;
+    private MediaPlayer mp;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -51,11 +53,15 @@ public class China extends AppCompatActivity {
                     edtResposta.setText(R.string.semOpcaoSelecionada);
                 } else {
                     if (checkedId == R.id.radChina) {
+                        mp = new MediaPlayer().create(getApplicationContext(), R.raw.correta);
+                        mp.start();
                         edtResposta.setText(R.string.correta);
                         if (bd != null)
                             bd.putInt("corretas", usuario.incrementaCorreta());
                         proximaPagina(bd);
                     } else {
+                        mp = new MediaPlayer().create(getApplicationContext(), R.raw.incorreta);
+                        mp.start();
                         edtResposta.setText(R.string.incorreta);
                         if (bd != null)
                             bd.putInt("incorretas", usuario.incrementaIncorreta());
