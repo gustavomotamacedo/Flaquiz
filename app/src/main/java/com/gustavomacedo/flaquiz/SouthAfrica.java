@@ -49,7 +49,7 @@ public class SouthAfrica extends AppCompatActivity {
                 if (checkedId == -1) {
                     edtResposta.setText(R.string.semOpcaoSelecionada);
                 } else {
-                    if (checkedId == R.id.radRussia) {
+                    if (checkedId == R.id.radSouthAfrica) {
                         edtResposta.setText(R.string.correta);
                         if (bd != null)
                             bd.putInt("corretas", usuario.incrementaCorreta());
