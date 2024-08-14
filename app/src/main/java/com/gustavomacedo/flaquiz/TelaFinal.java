@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -41,8 +40,6 @@ public class TelaFinal extends AppCompatActivity {
         TextView txtParabens = findViewById(R.id.txtParabens);
         TextView txtCorretas = findViewById(R.id.txtCorretas);
         TextView txtIncorretas = findViewById(R.id.txtIncorretas);
-        Button btnRecomecar = findViewById(R.id.btnRecomecar);
-
 
 
         txtCorretas.setText("Acertos\n" + usuario.getQtdCorretas());
