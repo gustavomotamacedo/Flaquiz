@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Flaquiz"
         tools:targetApi="31">
         <activity
+            android:name=".SouthAfrica"
+            android:exported="false" />
+        <activity
             android:name=".Russia"
             android:exported="false" />
         <activity
