@@ -66,7 +66,7 @@ public class India extends AppCompatActivity {
     }
 
     public void proximaPagina(Bundle parametros) {
-        Intent in = new Intent(getApplicationContext(), TelaFinal.class);
+        Intent in = new Intent(getApplicationContext(), China.class);
 
         if (parametros != null) {
             in.putExtras(parametros);

@@ -66,7 +66,7 @@ public class SouthAfrica extends AppCompatActivity {
     }
 
     public void proximaPagina(Bundle parametros) {
-        Intent in = new Intent(getApplicationContext(), India.class);
+        Intent in = new Intent(getApplicationContext(), TelaFinal.class);
 
         if (parametros != null) {
             in.putExtras(parametros);
