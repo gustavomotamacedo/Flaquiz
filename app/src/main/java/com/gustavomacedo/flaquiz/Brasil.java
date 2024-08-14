@@ -49,35 +49,22 @@ public class Brasil extends AppCompatActivity {
         }
 
         rgRespostas.setOnCheckedChangeListener((group, checkedId) -> {
-            if (checkedId == R.id.radBrasil) {
+            if (checkedId == -1) {
+                txtResposta.setText(R.string.semOpcaoSelecionada);
+            } else {
+                if (checkedId == R.id.radBrasil) {
                     txtResposta.setText(R.string.correta);
                     if (bd != null)
                         bd.putInt("corretas", usuario.incrementaCorreta());
                     proximaPagina(bd);
-            } else if (checkedId == R.id.radRussia) {
+                } else {
                     txtResposta.setText(R.string.incorreta);
                     if (bd != null)
                         bd.putInt("incorretas", usuario.incrementaIncorreta());
+                    Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    vibe.vibrate(300);
                     proximaPagina(bd);
-                }else if (checkedId == R.id.radIndia) {
-                txtResposta.setText(R.string.incorreta);
-                if (bd != null)
-                    bd.putInt("incorretas", usuario.incrementaIncorreta());
-                proximaPagina(bd);
-            }else if (checkedId == R.id.radChina) {
-                txtResposta.setText(R.string.incorreta);
-                if (bd != null)
-                    bd.putInt("incorretas", usuario.incrementaIncorreta());
-                proximaPagina(bd);
-            }else if (checkedId == R.id.radSouthAfrica) {
-                txtResposta.setText(R.string.incorreta);
-                if (bd != null)
-                    bd.putInt("incorretas", usuario.incrementaIncorreta());
-                Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                vibe.vibrate(300);
-                proximaPagina(bd);
-            } else {
-                txtResposta.setText(R.string.semOpcaoSelecionada);
+                }
             }
         });
     }
