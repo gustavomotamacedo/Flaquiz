@@ -1,5 +1,6 @@
 package com.gustavomacedo.flaquiz;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView edtNome;
     private Usuario usuario;
 
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         usuario = new Usuario();
         usuario.setQtdCorretas(0);
         usuario.setQtdIncorretas(0);
+
     }
 
     public void iniciar(View v) {
