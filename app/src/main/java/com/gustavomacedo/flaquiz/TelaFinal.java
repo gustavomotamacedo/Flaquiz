@@ -74,6 +74,7 @@ public class TelaFinal extends AppCompatActivity {
 
     public void reiniciar(View v) {
         Intent in = new Intent(getApplicationContext(), MainActivity.class);
+        mp.stop();
         finish();
         startActivity(in);
         overridePendingTransition(0, 0);
