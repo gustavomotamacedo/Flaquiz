@@ -12,7 +12,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.gustavomacedo.flaquiz.controller.PageNavigator;
 import com.gustavomacedo.flaquiz.models.Usuario;
 
 public class Russia extends AppCompatActivity {
@@ -53,12 +52,12 @@ public class Russia extends AppCompatActivity {
                         edtResposta.setText(R.string.correta);
                         if (bd != null)
                             bd.putInt("corretas", usuario.incrementaCorreta());
-                        PageNavigator.nextPage(getApplicationContext(), India.class, bd);
+                        proximaPagina(bd);
                     } else {
                         edtResposta.setText(R.string.incorreta);
                         if (bd != null)
                             bd.putInt("incorretas", usuario.incrementaIncorreta());
-                        PageNavigator.nextPage(getApplicationContext(), India.class, bd);
+                        proximaPagina(bd);
                     }
                 }
             }
