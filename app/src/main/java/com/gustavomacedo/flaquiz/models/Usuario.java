@@ -50,4 +50,8 @@ public class Usuario {
     public void setQtdIncorretas(int qtdIncorretas) {
         this.qtdIncorretas = qtdIncorretas;
     }
+
+    public int diferencaAcertosErros() {
+        return qtdCorretas - qtdIncorretas;
+    }
 }

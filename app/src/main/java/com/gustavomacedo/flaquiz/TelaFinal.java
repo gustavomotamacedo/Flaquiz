@@ -2,6 +2,7 @@ package com.gustavomacedo.flaquiz;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +23,7 @@ public class TelaFinal extends AppCompatActivity {
     private TextView txtCorretas;
     private TextView txtIncorretas;
     private Button btnRecomecar;
+    private MediaPlayer mp;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -49,10 +51,24 @@ public class TelaFinal extends AppCompatActivity {
 
         txtCorretas.setText("Acertos\n" + usuario.getQtdCorretas());
         txtIncorretas.setText("Erros\n" + usuario.getQtdIncorretas());
-        if (usuario.temAcertosMaioresQueErros()) {
-            txtParabens.setText(getString(R.string.parabens) + ", " + usuario.getNome().toUpperCase());
+        if (usuario.diferencaAcertosErros() > 0) {
+                txtParabens.setText(getString(R.string.parabens) + ", " + usuario.getNome().toUpperCase());
+            if (usuario.getQtdIncorretas() == 0) {
+                mp = new MediaPlayer().create(getApplicationContext(), R.raw.sexy_sax);
+                mp.start();
+            } else {
+                mp = new MediaPlayer().create(getApplicationContext(), R.raw.anime_wow_sound_effect);
+                mp.start();
+            }
         } else {
             txtParabens.setText(getString(R.string.tente_novamente) + usuario.getNome() + "!");
+            if (usuario.getQtdCorretas() == 0) {
+                mp = new MediaPlayer().create(getApplicationContext(), R.raw.emotional_damage);
+                mp.start();
+            } else {
+                mp = new MediaPlayer().create(getApplicationContext(), R.raw.english_or_spanish);
+                mp.start();
+            }
         }
     }
 
