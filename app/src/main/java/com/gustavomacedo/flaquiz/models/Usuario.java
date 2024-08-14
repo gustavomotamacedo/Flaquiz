@@ -13,6 +13,10 @@ public class Usuario {
         this.qtdIncorretas = qtdIncorretas;
     }
 
+    public boolean temAcertosMaioresQueErros() {
+        return qtdCorretas > qtdIncorretas;
+    }
+
     public int incrementaCorreta() {
         this.qtdCorretas++;
         return qtdCorretas;
