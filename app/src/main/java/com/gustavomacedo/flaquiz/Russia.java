@@ -14,17 +14,17 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.gustavomacedo.flaquiz.models.Usuario;
 
-public class India extends AppCompatActivity {
+public class Russia extends AppCompatActivity {
 
-    private Usuario usuario;
-    private TextView edtResposta;
+    Usuario usuario;
+    TextView edtResposta;
 
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_india);
+        setContentView(R.layout.activity_russia);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -34,31 +34,31 @@ public class India extends AppCompatActivity {
         Intent in = getIntent();
         Bundle bd = in.getExtras();
 
+        if (bd != null)
+            usuario = new Usuario(bd.getString("nome"), bd.getInt("corretas"), bd.getInt("incorretas"));
+
         RadioGroup rgRespostas = findViewById(R.id.rgRespostas);
         edtResposta = findViewById(R.id.edtResposta);
-        usuario = new Usuario();
 
-        if (bd != null) {
-            usuario.setNome(bd.getString("nome"));
-            usuario.setQtdCorretas(bd.getInt("corretas"));
-            usuario.setQtdIncorretas(bd.getInt("incorretas"));
-            edtResposta.setText(usuario.getNome() + ", selecione uma opção!\n" + usuario.getQtdCorretas() + "\t" + usuario.getQtdIncorretas());
-        }
+        edtResposta.setText(usuario.getNome() + ", selecione uma opção!\n" + usuario.getQtdCorretas() + "\t" + usuario.getQtdIncorretas());
 
-        rgRespostas.setOnCheckedChangeListener((group, checkedId) -> {
-            if (checkedId == -1) {
-                edtResposta.setText(R.string.semOpcaoSelecionada);
-            } else {
-                if (checkedId == R.id.radIndia) {
-                    edtResposta.setText(R.string.correta);
-                    if (bd != null)
-                        bd.putInt("corretas", usuario.incrementaCorreta());
-                    proximaPagina(bd);
+        rgRespostas.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == -1) {
+                    edtResposta.setText(R.string.semOpcaoSelecionada);
                 } else {
-                    edtResposta.setText(R.string.incorreta);
-                    if (bd != null)
-                        bd.putInt("incorretas", usuario.incrementaIncorreta());
-                    proximaPagina(bd);
+                    if (checkedId == R.id.radIndia) {
+                        edtResposta.setText(R.string.correta);
+                        if (bd != null)
+                            bd.putInt("corretas", usuario.incrementaCorreta());
+                        proximaPagina(bd);
+                    } else {
+                        edtResposta.setText(R.string.incorreta);
+                        if (bd != null)
+                            bd.putInt("incorretas", usuario.incrementaIncorreta());
+                        proximaPagina(bd);
+                    }
                 }
             }
         });
@@ -66,7 +66,7 @@ public class India extends AppCompatActivity {
     }
 
     public void proximaPagina(Bundle parametros) {
-        Intent in = new Intent(getApplicationContext(), TelaFinal.class);
+        Intent in = new Intent(getApplicationContext(), India.class);
 
         if (parametros != null) {
             in.putExtras(parametros);
