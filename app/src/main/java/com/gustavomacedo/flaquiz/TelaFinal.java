@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -63,16 +64,18 @@ public class TelaFinal extends AppCompatActivity {
                 mp.start();
             }
         }
-    }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Intent in = new Intent(getApplicationContext(), MainActivity.class);
-        mp.stop();
-        finish();
-        startActivity(in);
-        overridePendingTransition(0, 0);
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Intent in = new Intent(getApplicationContext(), MainActivity.class);
+                mp.stop();
+                finish();
+                startActivity(in);
+                overridePendingTransition(0, 0);
+            }
+        });
+
     }
 
     public void reiniciar(View v) {

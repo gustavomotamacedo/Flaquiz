@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -47,54 +48,40 @@ public class Russia extends AppCompatActivity {
 
         edtResposta.setText(usuario.getNome() + ", selecione uma opção!\n" + usuario.getQtdCorretas() + "\t" + usuario.getQtdIncorretas());
 
-        rgRespostas.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == -1) {
-                    edtResposta.setText(R.string.semOpcaoSelecionada);
+        rgRespostas.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == -1) {
+                edtResposta.setText(R.string.semOpcaoSelecionada);
+            } else {
+                if (checkedId == R.id.radRussia) {
+                    mp = MediaPlayer.create(getApplicationContext(), R.raw.correta);
+                    mp.start();
+                    edtResposta.setText(R.string.correta);
+                    if (bd != null)
+                        bd.putInt("corretas", usuario.incrementaCorreta());
+                    proximaPagina(bd);
                 } else {
-                    if (checkedId == R.id.radRussia) {
-                        mp = new MediaPlayer().create(getApplicationContext(), R.raw.correta);
-                        mp.start();
-                        edtResposta.setText(R.string.correta);
-                        if (bd != null)
-                            bd.putInt("corretas", usuario.incrementaCorreta());
-                        proximaPagina(bd);
-                    } else {
-                        mp = new MediaPlayer().create(getApplicationContext(), R.raw.incorreta);
-                        mp.start();
-                        edtResposta.setText(R.string.incorreta);
-                        if (bd != null)
-                            bd.putInt("incorretas", usuario.incrementaIncorreta());
-                        Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                        vibe.vibrate(300);
-                        proximaPagina(bd);
-                    }
+                    mp = MediaPlayer.create(getApplicationContext(), R.raw.incorreta);
+                    mp.start();
+                    edtResposta.setText(R.string.incorreta);
+                    if (bd != null)
+                        bd.putInt("incorretas", usuario.incrementaIncorreta());
+                    Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    vibe.vibrate(300);
+                    proximaPagina(bd);
                 }
             }
         });
 
-    }
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Intent in = new Intent(getApplicationContext(), MainActivity.class);
+                Toast.makeText(getApplicationContext(), "Redirecionado para o menu inicial.", Toast.LENGTH_SHORT).show();
+                finish();
+                startActivity(in);
+            }
+        });
 
-    public void onBackPressed() {
-        super.onBackPressed();
-//        if (clickDuplo) {
-//            Intent in = new Intent(getApplicationContext(), MainActivity.class);
-//            startActivity(in);
-//        }
-//        clickDuplo = true;
-//        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                clickDuplo = false;
-//            }
-//        }, 2000);
-//        Toast.makeText(this, "Click novamente para voltar ao menu inicial.", Toast.LENGTH_SHORT).show();
-
-        Intent in = new Intent(getApplicationContext(), MainActivity.class);
-        Toast.makeText(this, "Redirecionado para o menu inicial.", Toast.LENGTH_SHORT).show();
-        finish();
-        startActivity(in);
     }
 
     public void proximaPagina(Bundle parametros) {

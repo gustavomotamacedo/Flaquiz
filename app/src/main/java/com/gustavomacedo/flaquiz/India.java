@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -23,7 +24,7 @@ public class India extends AppCompatActivity {
     private Usuario usuario;
     private TextView edtResposta;
     private MediaPlayer mp;
-    private boolean clickDuplo;
+//    private boolean clickDuplo;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -40,7 +41,7 @@ public class India extends AppCompatActivity {
         Intent in = getIntent();
         Bundle bd = in.getExtras();
 
-        clickDuplo = false;
+//        clickDuplo = false;
 
         RadioGroup rgRespostas = findViewById(R.id.rgRespostas);
         edtResposta = findViewById(R.id.edtResposta);
@@ -58,14 +59,14 @@ public class India extends AppCompatActivity {
                 edtResposta.setText(R.string.semOpcaoSelecionada);
             } else {
                 if (checkedId == R.id.radIndia) {
-                    mp = new MediaPlayer().create(getApplicationContext(), R.raw.correta);
+                    mp = MediaPlayer.create(getApplicationContext(), R.raw.correta);
                     mp.start();
                     edtResposta.setText(R.string.correta);
                     if (bd != null)
                         bd.putInt("corretas", usuario.incrementaCorreta());
                     proximaPagina(bd);
                 } else {
-                    mp = new MediaPlayer().create(getApplicationContext(), R.raw.incorreta);
+                    mp = MediaPlayer.create(getApplicationContext(), R.raw.incorreta);
                     mp.start();
                     edtResposta.setText(R.string.incorreta);
                     if (bd != null)
@@ -77,27 +78,16 @@ public class India extends AppCompatActivity {
             }
         });
 
-    }
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Intent in = new Intent(getApplicationContext(), MainActivity.class);
+                Toast.makeText(getApplicationContext(), "Redirecionado para o menu inicial.", Toast.LENGTH_SHORT).show();
+                finish();
+                startActivity(in);
+            }
+        });
 
-    public void onBackPressed() {
-        super.onBackPressed();
-//        if (clickDuplo) {
-//            Intent in = new Intent(getApplicationContext(), MainActivity.class);
-//            startActivity(in);
-//        }
-//        clickDuplo = true;
-//        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                clickDuplo = false;
-//            }
-//        }, 2000);
-//        Toast.makeText(this, "Click novamente para voltar ao menu inicial.", Toast.LENGTH_SHORT).show();
-
-        Intent in = new Intent(getApplicationContext(), MainActivity.class);
-        Toast.makeText(this, "Redirecionado para o menu inicial.", Toast.LENGTH_SHORT).show();
-        finish();
-        startActivity(in);
     }
 
     public void proximaPagina(Bundle parametros) {

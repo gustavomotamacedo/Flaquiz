@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -21,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText edtNome;
     private Usuario usuario;
-    private TextView txtFlaquiz;
     private MediaPlayer mp;
     private int click;
 
@@ -38,34 +38,31 @@ public class MainActivity extends AppCompatActivity {
         });
 
         edtNome = findViewById(R.id.edtNome);
-        txtFlaquiz = findViewById(R.id.textView);
+        TextView txtFlaquiz = findViewById(R.id.textView);
         click = 0;
         usuario = new Usuario();
         usuario.setQtdCorretas(0);
         usuario.setQtdIncorretas(0);
 
-        txtFlaquiz.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                click++;
-                if (click == 3) {
-                    mp = new MediaPlayer().create(getApplicationContext(), R.raw.para_de_mandar_audio_to_na_ucrania);
-                    mp.start();
-                } else if (click == 5) {
-                    mp = new MediaPlayer().create(getApplicationContext(), R.raw.eu_tentei_crop);
-                    mp.start();
-                } else if (click == 4 || click == 6) {
-                    mp.stop();
-                } else if (click > 6) {
-                    click = 0;
-                }
+        txtFlaquiz.setOnClickListener(v -> {
+            click++;
+            if (click == 3) {
+                mp = MediaPlayer.create(getApplicationContext(), R.raw.para_de_mandar_audio_to_na_ucrania);
+                mp.start();
+            } else if (click == 5) {
+                mp = MediaPlayer.create(getApplicationContext(), R.raw.eu_tentei_crop);
+                mp.start();
+            } else if (click == 4 || click == 6) {
+                mp.stop();
+            } else if (click > 6) {
+                click = 0;
             }
         });
 
-
-    }    public void onBackPressed() {
-        super.onBackPressed();
-//        if (clickDuplo) {
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                //        if (clickDuplo) {
 //            Intent in = new Intent(getApplicationContext(), MainActivity.class);
 //            startActivity(in);
 //        }
@@ -77,8 +74,11 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        }, 2000);
 //        Toast.makeText(this, "Click novamente para voltar ao menu inicial.", Toast.LENGTH_SHORT).show();
-        finish();
-        Toast.makeText(this, "Finalizando app. Até logo!", Toast.LENGTH_SHORT).show();
+                finish();
+                Toast.makeText(getApplicationContext(), "Finalizando app. Até logo!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     public void iniciar(View v) {
