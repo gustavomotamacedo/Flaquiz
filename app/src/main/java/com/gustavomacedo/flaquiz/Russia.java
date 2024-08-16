@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -75,6 +76,27 @@ public class Russia extends AppCompatActivity {
 
     }
 
+    public void onBackPressed() {
+        super.onBackPressed();
+//        if (clickDuplo) {
+//            Intent in = new Intent(getApplicationContext(), MainActivity.class);
+//            startActivity(in);
+//        }
+//        clickDuplo = true;
+//        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                clickDuplo = false;
+//            }
+//        }, 2000);
+//        Toast.makeText(this, "Click novamente para voltar ao menu inicial.", Toast.LENGTH_SHORT).show();
+
+        Intent in = new Intent(getApplicationContext(), MainActivity.class);
+        Toast.makeText(this, "Redirecionado para o menu inicial.", Toast.LENGTH_SHORT).show();
+        finish();
+        startActivity(in);
+    }
+
     public void proximaPagina(Bundle parametros) {
         Intent in = new Intent(getApplicationContext(), India.class);
 
@@ -82,6 +104,7 @@ public class Russia extends AppCompatActivity {
             in.putExtras(parametros);
         }
 
+        finish();
         startActivity(in);
     }
 }

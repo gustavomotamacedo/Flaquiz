@@ -65,6 +65,16 @@ public class TelaFinal extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent in = new Intent(getApplicationContext(), MainActivity.class);
+        mp.stop();
+        finish();
+        startActivity(in);
+        overridePendingTransition(0, 0);
+    }
+
     public void reiniciar(View v) {
         Intent in = new Intent(getApplicationContext(), MainActivity.class);
         mp.stop();

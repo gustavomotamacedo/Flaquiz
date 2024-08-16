@@ -63,6 +63,22 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }    public void onBackPressed() {
+        super.onBackPressed();
+//        if (clickDuplo) {
+//            Intent in = new Intent(getApplicationContext(), MainActivity.class);
+//            startActivity(in);
+//        }
+//        clickDuplo = true;
+//        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                clickDuplo = false;
+//            }
+//        }, 2000);
+//        Toast.makeText(this, "Click novamente para voltar ao menu inicial.", Toast.LENGTH_SHORT).show();
+        finish();
+        Toast.makeText(this, "Finalizando app. Até logo!", Toast.LENGTH_SHORT).show();
     }
 
     public void iniciar(View v) {
@@ -81,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
             in.putExtras(bd);
 
+            finish();
             startActivity(in);
         }
     }
