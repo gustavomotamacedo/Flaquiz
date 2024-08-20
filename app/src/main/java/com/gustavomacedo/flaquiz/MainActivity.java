@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
     private Usuario usuario;
     private MediaPlayer mp;
     private int click;
-    private Button btnEncerrar;
 
     @SuppressLint("ResourceAsColor")
     @Override
@@ -61,11 +60,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnEncerrar = findViewById(R.id.btnEncerrar);
+        Button btnEncerrar = findViewById(R.id.btnEncerrar);
 
-        btnEncerrar.setOnClickListener(v -> {
-            encerrar();
-        });
+        btnEncerrar.setOnClickListener(v -> encerrar());
 
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
