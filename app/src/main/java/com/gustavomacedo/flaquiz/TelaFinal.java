@@ -82,6 +82,7 @@ public class TelaFinal extends AppCompatActivity {
 
     public void encerrar(View view) {
         finish();
+        mp.stop();
         Toast.makeText(getApplicationContext(), "Finalizando app. Até logo!", Toast.LENGTH_SHORT).show();
     }
 
