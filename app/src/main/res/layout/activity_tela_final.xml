@@ -55,5 +55,12 @@
             android:onClick="reiniciar"
             android:text="@string/reiniciar" />
 
+        <Button
+            android:id="@+id/btnEncerrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="encerrar"
+            android:text="@string/encerrar" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

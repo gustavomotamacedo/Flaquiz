@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
@@ -76,6 +77,12 @@ public class TelaFinal extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    public void encerrar(View view) {
+        finish();
+        Toast.makeText(getApplicationContext(), "Finalizando app. Até logo!", Toast.LENGTH_SHORT).show();
     }
 
     public void reiniciar(View v) {
