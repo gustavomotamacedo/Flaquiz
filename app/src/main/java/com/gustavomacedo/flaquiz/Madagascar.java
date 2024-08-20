@@ -19,7 +19,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.gustavomacedo.flaquiz.models.Usuario;
 
-public class SouthAfrica extends AppCompatActivity {
+public class Madagascar extends AppCompatActivity {
 
     Usuario usuario;
     TextView edtResposta;
@@ -30,7 +30,7 @@ public class SouthAfrica extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_south_africa);
+        setContentView(R.layout.activity_madagascar);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -53,7 +53,7 @@ public class SouthAfrica extends AppCompatActivity {
             if (checkedId == -1) {
                 edtResposta.setText(R.string.semOpcaoSelecionada);
             } else {
-                if (checkedId == R.id.radSouthAfrica) {
+                if (checkedId == R.id.radMadagascar) {
                     mp = MediaPlayer.create(getApplicationContext(), R.raw.correta);
                     mp.start();
                     edtResposta.setText(R.string.correta);
@@ -85,7 +85,7 @@ public class SouthAfrica extends AppCompatActivity {
     }
 
     public void proximaPagina(Bundle parametros) {
-        Intent in = new Intent(getApplicationContext(), Iraque.class);
+        Intent in = new Intent(getApplicationContext(), Mauritania.class);
 
         if (parametros != null) {
             in.putExtras(parametros);

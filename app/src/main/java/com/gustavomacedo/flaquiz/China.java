@@ -52,7 +52,7 @@ public class China extends AppCompatActivity {
             if (checkedId == -1) {
                 edtResposta.setText(R.string.semOpcaoSelecionada);
             } else {
-                if (checkedId == R.id.radChina) {
+                if (checkedId == R.id.radIraque) {
                     mp = MediaPlayer.create(getApplicationContext(), R.raw.correta);
                     mp.start();
                     edtResposta.setText(R.string.correta);

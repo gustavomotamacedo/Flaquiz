@@ -5,8 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Russia">
-
+    tools:context=".Mauritania">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -36,8 +35,9 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/bandeira_da_russia"
-            android:src="@drawable/bandeira_da_russia" />
+            android:contentDescription="@string/bandeira_da_mauritania"
+            android:src="@drawable/bandeira_da_mauritania"
+            tools:ignore="ImageContrastCheck" />
 
         <RadioGroup
             android:id="@+id/rgRespostas"
@@ -45,11 +45,11 @@
             android:layout_height="wrap_content">
 
             <RadioButton
-                android:id="@+id/radBrasil"
+                android:id="@+id/radIraque"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"
-                android:text="@string/brazil" />
+                android:text="@string/iraque" />
 
             <RadioButton
                 android:id="@+id/radRussia"
@@ -59,18 +59,18 @@
                 android:text="@string/russia" />
 
             <RadioButton
-                android:id="@+id/radIndia"
+                android:id="@+id/radMauritania"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"
-                android:text="@string/india" />
+                android:text="@string/mauritania" />
 
             <RadioButton
-                android:id="@+id/radIraque"
+                android:id="@+id/radBrasil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"
-                android:text="@string/china" />
+                android:text="@string/brazil" />
 
             <RadioButton
                 android:id="@+id/radSouthAfrica"

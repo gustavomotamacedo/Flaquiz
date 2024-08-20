@@ -22,4 +22,14 @@
     <string name="RGM">30410746</string>
     <string name="encerrar">Encerrar</string>
     <string name="que_pais_e_esse">Que país é esse?</string>
+    <string name="iraque">Iraque</string>
+    <string name="bandeira_do_iraque">Bandeira do Iraque</string>
+    <string name="bandeira_de_madagascar">Bandeira de Madagascar</string>
+    <string name="madagascar">Madagascar</string>
+    <string name="bandeira_da_mauritania">Bandeira da Mauritânia</string>
+    <string name="mauritania">Mauritânia</string>
+    <string name="bandeira_do_congo">Bandeira do Congo</string>
+    <string name="congo">Congo</string>
+    <string name="niger">Níger</string>
+    <string name="bandeira_do_niger">Bandeira do Níger</string>
 </resources>

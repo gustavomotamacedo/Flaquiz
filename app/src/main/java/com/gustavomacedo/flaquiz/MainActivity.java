@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         } else if (edtNome.getText().toString().length() < 3) {
             Toast.makeText(getApplicationContext(), "Digite um nome de usuário com pelo menos 3 letras", Toast.LENGTH_LONG).show();
         }else {
-            usuario.setNome(edtNome.getText().toString());
+            usuario.setNome(edtNome.getText().toString().strip());
             Intent in = new Intent(getApplicationContext(), Brasil.class);
             Bundle bd = new Bundle();
 

@@ -15,6 +15,21 @@
         android:theme="@style/Theme.Flaquiz"
         tools:targetApi="31">
         <activity
+            android:name=".Niger"
+            android:exported="false" />
+        <activity
+            android:name=".Congo"
+            android:exported="false" />
+        <activity
+            android:name=".Mauritania"
+            android:exported="false" />
+        <activity
+            android:name=".Madagascar"
+            android:exported="false" />
+        <activity
+            android:name=".Iraque"
+            android:exported="false" />
+        <activity
             android:name=".China"
             android:exported="false" />
         <activity
