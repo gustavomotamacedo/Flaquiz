@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private Usuario usuario;
     private MediaPlayer mp;
     private int click;
+    private Button btnEncerrar;
 
     @SuppressLint("ResourceAsColor")
     @Override
@@ -59,26 +61,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnEncerrar = findViewById(R.id.btnEncerrar);
+
+        btnEncerrar.setOnClickListener(v -> {
+            encerrar();
+        });
+
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                //        if (clickDuplo) {
-//            Intent in = new Intent(getApplicationContext(), MainActivity.class);
-//            startActivity(in);
-//        }
-//        clickDuplo = true;
-//        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                clickDuplo = false;
-//            }
-//        }, 2000);
-//        Toast.makeText(this, "Click novamente para voltar ao menu inicial.", Toast.LENGTH_SHORT).show();
-                finish();
-                Toast.makeText(getApplicationContext(), "Finalizando app. Até logo!", Toast.LENGTH_SHORT).show();
+                encerrar();
             }
         });
 
+    }
+
+    private void encerrar() {
+        finish();
+        Toast.makeText(getApplicationContext(), "Finalizando app. Até logo!", Toast.LENGTH_SHORT).show();
     }
 
     public void iniciar(View v) {

@@ -15,6 +15,46 @@
         tools:layout_editor_absoluteX="-79dp"
         tools:layout_editor_absoluteY="-16dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="21dp">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/nome_do_aluno"
+                app:srcCompat="@drawable/foto_perfil_aluno" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="center_vertical"
+                    android:text="@string/nome_do_aluno" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="center_vertical"
+                    android:text="@string/RGM" />
+            </LinearLayout>
+
+        </LinearLayout>
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
@@ -28,22 +68,44 @@
             android:id="@+id/edtNome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:autofillHints=""
             android:ems="10"
             android:fontFamily="@font/roboto"
             android:gravity="center"
             android:hint="@string/digite_seu_nome"
             android:inputType="text"
             android:paddingTop="21dp"
-            android:paddingBottom="21dp" />
+            android:paddingBottom="21dp"
+            tools:ignore="TextContrastCheck" />
 
-        <Button
-            android:id="@+id/btnIniciar"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto"
             android:gravity="center"
-            android:onClick="iniciar"
-            android:padding="10dp"
-            android:text="@string/iniciar"/>
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnIniciar"
+                style="@style/Button.White"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="11dp"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"
+                android:onClick="iniciar"
+                android:padding="10dp"
+                android:text="@string/iniciar" />
+
+            <Button
+                android:id="@+id/btnEncerrar"
+                style="@style/Button.White"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="11dp"
+                android:fontFamily="@font/roboto"
+                android:padding="10dp"
+                android:text="@string/encerrar" />
+        </LinearLayout>
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
