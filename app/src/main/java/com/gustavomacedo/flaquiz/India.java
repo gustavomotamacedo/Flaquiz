@@ -6,8 +6,8 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.widget.Button;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -22,8 +22,9 @@ import com.gustavomacedo.flaquiz.models.Usuario;
 public class India extends AppCompatActivity {
 
     private Usuario usuario;
-    private TextView edtResposta;
     private MediaPlayer mp;
+    private Button btnResponder;
+    private int checkedRadButton;
 //    private boolean clickDuplo;
 
     @SuppressLint("SetTextI18n")
@@ -41,36 +42,37 @@ public class India extends AppCompatActivity {
         Intent in = getIntent();
         Bundle bd = in.getExtras();
 
+
 //        clickDuplo = false;
 
-        RadioGroup rgRespostas = findViewById(R.id.rgRespostas);
-        edtResposta = findViewById(R.id.edtResposta);
         usuario = new Usuario();
 
         if (bd != null) {
             usuario.setNome(bd.getString("nome"));
             usuario.setQtdCorretas(bd.getInt("corretas"));
             usuario.setQtdIncorretas(bd.getInt("incorretas"));
-            edtResposta.setText(usuario.getNome() + ", selecione uma opção!\n" + usuario.getQtdCorretas() + "\t" + usuario.getQtdIncorretas());
         }
 
-        rgRespostas.setOnCheckedChangeListener((group, checkedId) -> {
-            if (checkedId == -1) {
-                edtResposta.setText(R.string.semOpcaoSelecionada);
+        RadioGroup rgRespostas = findViewById(R.id.rgRespostas);
+        rgRespostas.setOnCheckedChangeListener((group, checkedId) -> checkedRadButton = checkedId);
+
+        Button btnResponder = findViewById(R.id.btnResponder);
+        checkedRadButton = -1;
+        btnResponder.setOnClickListener(v -> {
+            if (checkedRadButton == -1) {
+                Toast.makeText(getApplicationContext(), R.string.semOpcaoSelecionada, Toast.LENGTH_SHORT).show();
             } else {
-                if (checkedId == R.id.radIndia) {
+                if (checkedRadButton == R.id.radIndia) {
                     mp = MediaPlayer.create(getApplicationContext(), R.raw.correta);
                     mp.start();
-                    edtResposta.setText(R.string.correta);
                     if (bd != null)
                         bd.putInt("corretas", usuario.incrementaCorreta());
                     proximaPagina(bd);
                 } else {
-                    mp = MediaPlayer.create(getApplicationContext(), R.raw.incorreta);
-                    mp.start();
-                    edtResposta.setText(R.string.incorreta);
                     if (bd != null)
                         bd.putInt("incorretas", usuario.incrementaIncorreta());
+                    mp = MediaPlayer.create(getApplicationContext(), R.raw.incorreta);
+                    mp.start();
                     Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibe.vibrate(300);
                     proximaPagina(bd);

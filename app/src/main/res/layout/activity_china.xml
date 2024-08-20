@@ -13,24 +13,24 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/ic_launcher_background"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="10dp">
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/ic_launcher_background"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/roboto"
-                android:text="@string/que_pais_e_esse"
-                android:textColor="#182433"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/roboto"
+            android:text="@string/que_pais_e_esse"
+            android:textColor="#182433"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
         <ImageView
             android:id="@+id/imageView"
@@ -81,13 +81,19 @@
 
         </RadioGroup>
 
-        <TextView
-            android:id="@+id/edtResposta"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="bottom|center"
-            android:textSize="20sp" />
+            android:gravity="center_horizontal|center_vertical"
+            android:orientation="horizontal">
 
+            <Button
+                android:id="@+id/btnResponder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/responder" />
+
+        </LinearLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

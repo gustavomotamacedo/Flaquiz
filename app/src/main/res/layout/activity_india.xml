@@ -81,12 +81,19 @@
 
         </RadioGroup>
 
-        <TextView
-            android:id="@+id/edtResposta"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="bottom|center"
-            android:textSize="20sp" />
+            android:gravity="center_horizontal|center_vertical"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnResponder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/responder" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

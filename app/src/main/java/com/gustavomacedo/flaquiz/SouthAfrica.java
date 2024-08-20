@@ -6,8 +6,8 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.widget.Button;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -22,7 +22,7 @@ import com.gustavomacedo.flaquiz.models.Usuario;
 public class SouthAfrica extends AppCompatActivity {
 
     Usuario usuario;
-    TextView edtResposta;
+    int checkedRadButton;
     private MediaPlayer mp;
 
     @SuppressLint("SetTextI18n")
@@ -45,27 +45,25 @@ public class SouthAfrica extends AppCompatActivity {
             usuario = new Usuario(bd.getString("nome"), bd.getInt("corretas"), bd.getInt("incorretas"));
 
         RadioGroup rgRespostas = findViewById(R.id.rgRespostas);
-        edtResposta = findViewById(R.id.edtResposta);
+        rgRespostas.setOnCheckedChangeListener((group, checkedId) -> checkedRadButton = checkedId);
 
-        edtResposta.setText(usuario.getNome() + ", selecione uma opção!\n" + usuario.getQtdCorretas() + "\t" + usuario.getQtdIncorretas());
-
-        rgRespostas.setOnCheckedChangeListener((group, checkedId) -> {
-            if (checkedId == -1) {
-                edtResposta.setText(R.string.semOpcaoSelecionada);
+        Button btnResponder = findViewById(R.id.btnResponder);
+        checkedRadButton = -1;
+        btnResponder.setOnClickListener(v -> {
+            if (checkedRadButton == -1) {
+                Toast.makeText(getApplicationContext(), R.string.semOpcaoSelecionada, Toast.LENGTH_SHORT).show();
             } else {
-                if (checkedId == R.id.radSouthAfrica) {
+                if (checkedRadButton == R.id.radSouthAfrica) {
                     mp = MediaPlayer.create(getApplicationContext(), R.raw.correta);
                     mp.start();
-                    edtResposta.setText(R.string.correta);
                     if (bd != null)
                         bd.putInt("corretas", usuario.incrementaCorreta());
                     proximaPagina(bd);
                 } else {
-                    mp = MediaPlayer.create(getApplicationContext(), R.raw.incorreta);
-                    mp.start();
-                    edtResposta.setText(R.string.incorreta);
                     if (bd != null)
                         bd.putInt("incorretas", usuario.incrementaIncorreta());
+                    mp = MediaPlayer.create(getApplicationContext(), R.raw.incorreta);
+                    mp.start();
                     Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vibe.vibrate(300);
                     proximaPagina(bd);

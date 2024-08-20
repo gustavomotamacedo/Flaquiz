@@ -6,8 +6,8 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.widget.Button;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -21,10 +21,10 @@ import com.gustavomacedo.flaquiz.models.Usuario;
 
 public class Brasil extends AppCompatActivity {
 
-    private TextView txtResposta;
     private Usuario usuario;
     RadioGroup rgRespostas;
     private MediaPlayer mp;
+    private int checkedRadButton;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -41,7 +41,6 @@ public class Brasil extends AppCompatActivity {
         Intent in = getIntent();
         Bundle bd = in.getExtras();
 
-        txtResposta = findViewById(R.id.edtResposta);
         rgRespostas = findViewById(R.id.rgRespostas);
         usuario = new Usuario();
 
@@ -49,22 +48,24 @@ public class Brasil extends AppCompatActivity {
             usuario.setNome(bd.getString("nome"));
             usuario.setQtdCorretas(bd.getInt("corretas"));
             usuario.setQtdIncorretas(bd.getInt("incorretas"));
-            txtResposta.setText(usuario.getNome() + ", selecione uma opção!\n" + usuario.getQtdCorretas() + "\t\t\t" + usuario.getQtdIncorretas());
         }
 
-        rgRespostas.setOnCheckedChangeListener((group, checkedId) -> {
-            if (checkedId == -1) {
-                txtResposta.setText(R.string.semOpcaoSelecionada);
+
+        rgRespostas.setOnCheckedChangeListener((group, checkedId) -> checkedRadButton = checkedId);
+
+        Button btnResponder = findViewById(R.id.btnResponder);
+        checkedRadButton = -1;
+        btnResponder.setOnClickListener(v -> {
+            if (checkedRadButton == -1) {
+                Toast.makeText(getApplicationContext(), R.string.semOpcaoSelecionada, Toast.LENGTH_SHORT).show();
             } else {
-                if (checkedId == R.id.radBrasil) {
+                if (checkedRadButton == R.id.radBrasil) {
                     mp = MediaPlayer.create(getApplicationContext(), R.raw.correta);
                     mp.start();
-                    txtResposta.setText(R.string.correta);
                     if (bd != null)
                         bd.putInt("corretas", usuario.incrementaCorreta());
                     proximaPagina(bd);
                 } else {
-                    txtResposta.setText(R.string.incorreta);
                     if (bd != null)
                         bd.putInt("incorretas", usuario.incrementaIncorreta());
                     mp = MediaPlayer.create(getApplicationContext(), R.raw.incorreta);
@@ -75,6 +76,8 @@ public class Brasil extends AppCompatActivity {
                 }
             }
         });
+
+
 
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
